@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    <bean id="specification" class="AutoWiring.ByName.Specification">
+        <property name="make" value="Honda"/>
+        <property name="model" value="Accord"/>
+        <property name="manufactureYear" value="2025"/>
+        <property name="engineType" value="V6 Engine"/>
+    </bean>
+
+    <bean id="myCar" class="AutoWiring.ByName.Car" autowire="byName"/>
+    <!-- Here, autowire="byName" is pointing to bean id="specification" which is the same name as the property name
+     in Car class-->
+
+</beans>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    <bean id="emailSender" class="BeanLooseCouplingInjectionWithXml.Email">
+    </bean>
+
+    <bean id="smsSender" class="BeanLooseCouplingInjectionWithXml.Sms">
+    </bean>
+
+    <bean id="whatsappSender" class="BeanLooseCouplingInjectionWithXml.Whatsapp">
+    </bean>
+
+    <!-- The beans created below points to the classes that implemented the Message sender interface, we will simply
+        inject the classes into the notification service using constructor injector-->
+
+    <bean id="notificationWithEmail" class="BeanLooseCouplingInjectionWithXml.NotificationService">
+        <constructor-arg ref="emailSender"/>
+    </bean>
+
+    <bean id="notificationWithSms" class="BeanLooseCouplingInjectionWithXml.NotificationService">
+        <constructor-arg ref="smsSender"/>
+    </bean>
+
+    <bean id="notificationWithWhatsapp" class="BeanLooseCouplingInjectionWithXml.NotificationService">
+        <constructor-arg ref="whatsappSender"/>
+    </bean>
+
+</beans>
